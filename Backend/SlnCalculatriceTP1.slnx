@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="CalculatorTP2.API/CalculatorTP2.API.csproj" Id="447e5a96-4eee-483b-a3bb-d04b98ef4f2f" />
+  <Project Path="CalculatriceLibrary/CalculatriceLibrary.csproj" />
+  <Project Path="CalculatriceTP1/CalculatriceTP1.csproj" />
+</Solution>
