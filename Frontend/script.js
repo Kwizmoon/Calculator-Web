@@ -8,10 +8,10 @@ toggleBtn.addEventListener("click", () => {
 
     if (currentTheme === "dark") {
         document.documentElement.removeAttribute("data-theme");
-        icon.src = "img/moon.png";
+        icon.src = "moon.png";
     } else {
         document.documentElement.setAttribute("data-theme", "dark");
-        icon.src = "img/sun-icon-30.png";
+        icon.src = "sun-icon-30.png";
     }
 });
 let expr = "";
