@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{7B3306CD-5A4F-AE37-C185-ACFC56B6D777}|CalculatriceLibrary\\CalculatriceLibrary.csproj|c:\\users\\user\\downloads\\tp2\\backend\\calculatricelibrary\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{7B3306CD-5A4F-AE37-C185-ACFC56B6D777}|CalculatriceLibrary\\CalculatriceLibrary.csproj|solutionrelative:calculatricelibrary\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{447E5A96-4EEE-483B-A3BB-D04B98EF4F2F}|CalculatorTP2.API\\CalculatorTP2.API.csproj|c:\\users\\user\\downloads\\tp2\\backend\\calculatortp2.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{447E5A96-4EEE-483B-A3BB-D04B98EF4F2F}|CalculatorTP2.API\\CalculatorTP2.API.csproj|solutionrelative:calculatortp2.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{447E5A96-4EEE-483B-A3BB-D04B98EF4F2F}|CalculatorTP2.API\\CalculatorTP2.API.csproj|c:\\users\\user\\downloads\\tp2\\backend\\calculatortp2.api\\controllers\\calculatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{447E5A96-4EEE-483B-A3BB-D04B98EF4F2F}|CalculatorTP2.API\\CalculatorTP2.API.csproj|solutionrelative:calculatortp2.api\\controllers\\calculatorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{7B3306CD-5A4F-AE37-C185-ACFC56B6D777}|CalculatriceLibrary\\CalculatriceLibrary.csproj|c:\\users\\user\\downloads\\tp2\\backend\\calculatricelibrary\\models\\calculatorrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{7B3306CD-5A4F-AE37-C185-ACFC56B6D777}|CalculatriceLibrary\\CalculatriceLibrary.csproj|solutionrelative:calculatricelibrary\\models\\calculatorrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{447E5A96-4EEE-483B-A3BB-D04B98EF4F2F}|CalculatorTP2.API\\CalculatorTP2.API.csproj|c:\\users\\user\\downloads\\tp2\\backend\\calculatortp2.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{447E5A96-4EEE-483B-A3BB-D04B98EF4F2F}|CalculatorTP2.API\\CalculatorTP2.API.csproj|solutionrelative:calculatortp2.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{447E5A96-4EEE-483B-A3BB-D04B98EF4F2F}|CalculatorTP2.API\\CalculatorTP2.API.csproj|c:\\users\\user\\downloads\\tp2\\backend\\calculatortp2.api\\wwwroot\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -30,24 +34,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CalculatorRequest.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatriceLibrary\\Models\\CalculatorRequest.cs",
-              "RelativeDocumentMoniker": "CalculatriceLibrary\\Models\\CalculatorRequest.cs",
-              "ToolTip": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatriceLibrary\\Models\\CalculatorRequest.cs",
-              "RelativeToolTip": "CalculatriceLibrary\\Models\\CalculatorRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatriceLibrary\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "CalculatriceLibrary\\Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatriceLibrary\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "CalculatriceLibrary\\Data\\AppDbContext.cs",
+              "ViewState": "AgIAABIAAACAyszMzMwiwCkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T00:24:49.215Z",
+              "WhenOpened": "2026-04-16T03:16:21.892Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Calculator.cs",
               "DocumentMoniker": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatriceLibrary\\Calculator.cs",
               "RelativeDocumentMoniker": "CalculatriceLibrary\\Calculator.cs",
@@ -55,31 +59,17 @@
               "RelativeToolTip": "CalculatriceLibrary\\Calculator.cs",
               "ViewState": "AgIAAFcAAADAzMzMzMwUwG4AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T23:54:51.546Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-13T23:54:51.546Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CalculatorController.cs",
-              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatorTP2.API\\Controllers\\CalculatorController.cs",
-              "RelativeDocumentMoniker": "CalculatorTP2.API\\Controllers\\CalculatorController.cs",
-              "ToolTip": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatorTP2.API\\Controllers\\CalculatorController.cs",
-              "RelativeToolTip": "CalculatorTP2.API\\Controllers\\CalculatorController.cs",
-              "ViewState": "AgIAABEAAAAAmZmZmZklwAgAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T12:18:41.618Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatorTP2.API\\Program.cs",
               "RelativeDocumentMoniker": "CalculatorTP2.API\\Program.cs",
               "ToolTip": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatorTP2.API\\Program.cs",
               "RelativeToolTip": "CalculatorTP2.API\\Program.cs",
-              "ViewState": "AgIAAAEAAAAAMTMzMzMLwAQAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAQAAADAMTMzMzMrwBQAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-05T17:22:17.383Z",
               "EditorCaption": ""
@@ -87,6 +77,30 @@
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "CalculatorRequest.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatriceLibrary\\Models\\CalculatorRequest.cs",
+              "RelativeDocumentMoniker": "CalculatriceLibrary\\Models\\CalculatorRequest.cs",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatriceLibrary\\Models\\CalculatorRequest.cs",
+              "RelativeToolTip": "CalculatriceLibrary\\Models\\CalculatorRequest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T00:24:49.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CalculatorController.cs",
+              "DocumentMoniker": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatorTP2.API\\Controllers\\CalculatorController.cs",
+              "RelativeDocumentMoniker": "CalculatorTP2.API\\Controllers\\CalculatorController.cs",
+              "ToolTip": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatorTP2.API\\Controllers\\CalculatorController.cs",
+              "RelativeToolTip": "CalculatorTP2.API\\Controllers\\CalculatorController.cs",
+              "ViewState": "AgIAAAAAAABAZmZmZmYkwAgAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T12:18:41.618Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\USER\\Downloads\\TP2\\Backend\\CalculatorTP2.API\\wwwroot\\index.html",
               "RelativeDocumentMoniker": "CalculatorTP2.API\\wwwroot\\index.html",
@@ -94,8 +108,7 @@
               "RelativeToolTip": "CalculatorTP2.API\\wwwroot\\index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-04-05T17:34:23.925Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-05T17:34:23.925Z"
             }
           ]
         }

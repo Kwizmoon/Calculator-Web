@@ -8,6 +8,7 @@ C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\PubTmp
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\PubTmp\Out\Microsoft.Data.Sqlite.dll
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\PubTmp\Out\Microsoft.EntityFrameworkCore.dll
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\PubTmp\Out\Microsoft.EntityFrameworkCore.InMemory.dll
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\PubTmp\Out\Microsoft.EntityFrameworkCore.Sqlite.dll
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\PubTmp\Out\Microsoft.Extensions.DependencyModel.dll

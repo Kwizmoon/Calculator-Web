@@ -154,3 +154,4 @@ C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\obj\Release\net10.0\ref\Ca
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\bin\Release\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\bin\Release\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\bin\Release\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\USER\Downloads\TP2\Backend\CalculatorTP2.API\bin\Release\net10.0\Microsoft.EntityFrameworkCore.InMemory.dll

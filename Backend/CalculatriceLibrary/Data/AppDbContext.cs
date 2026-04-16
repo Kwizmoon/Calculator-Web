@@ -9,31 +9,33 @@ namespace CalculatriceLibrary.Data
 
     public class AppDbContext : DbContext
     {
-        // Représente la table CalculationLogs dans la base de données.
         public DbSet<CalculationLog> CalculationLogs { get; set; }
 
-        // Chemin vers le fichier SQLite (AppData\Local\calculatrice_tp1.db).
-        public string DbPath { get; }
+        // 1. ADD THIS CONSTRUCTOR: This allows Program.cs to pass in the In-Memory settings
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
 
+        // 2. KEEP THIS for local development if needed, but the constructor above is the priority
         public AppDbContext()
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            DbPath = System.IO.Path.Join(path, "calculatrice_tp1.db");
         }
 
-        // Indique à EF Core comment se connecter à la BD.
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Data Source={DbPath}");
+            // 3. ONLY use SQLite if nothing else was configured in Program.cs
+            if (!optionsBuilder.IsConfigured)
+            {
+                var folder = Environment.SpecialFolder.LocalApplicationData;
+                var path = Environment.GetFolderPath(folder);
+                var dbPath = System.IO.Path.Join(path, "calculatrice_tp1.db");
+                optionsBuilder.UseSqlite($"Data Source={dbPath}");
+            }
         }
 
-        // Indique à EF Core comment construire les tables et injecter les données.
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            // On délègue le seeding à une classe séparée pour garder le code propre.
             SeedData.Configure(modelBuilder);
         }
     }

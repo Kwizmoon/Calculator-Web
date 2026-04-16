@@ -8,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors();
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseInMemoryDatabase("CalculatorDatabase"));
 builder.Services.AddScoped<Calculator>();
 
 // SWAGGER SERVICES 
