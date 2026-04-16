@@ -1,2 +1,0 @@
-C:\Users\USER\Downloads\SlnCalculatriceTP1\CalculatorTP2.API\wwwroot\index.html
-wwwroot\index.html
