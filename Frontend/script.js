@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5298/calculator";
+const API_URL = "https://calculatortp2-eca3egh7gffhdpfy.canadacentral-01.azurewebsites.net/calculator";
 
 const toggleBtn = document.getElementById("theme-toggle");
 const icon = toggleBtn.querySelector("img");

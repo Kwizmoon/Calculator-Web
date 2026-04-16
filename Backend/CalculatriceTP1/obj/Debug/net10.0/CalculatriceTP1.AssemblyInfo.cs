@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CalculatriceTP1")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4619d08a6672ffe5063a75f2d666358e3df4d06")]
 [assembly: System.Reflection.AssemblyProductAttribute("CalculatriceTP1")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CalculatriceTP1")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

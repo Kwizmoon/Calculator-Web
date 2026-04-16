@@ -2,41 +2,28 @@ using CalculatriceLibrary;
 using CalculatriceLibrary.Data;
 using Microsoft.EntityFrameworkCore;
 
-
-
 var builder = WebApplication.CreateBuilder(args);
 
+// CORS
+builder.Services.AddCors();
 
-// CORS POUR PERMETTRE LES REQUETES DEPUIS LE FRONTEND
-builder.Services.AddCors(options => {
-    options.AddDefaultPolicy(policy => {
-        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-    });
-});
-
-
-// AJOUTE SERVICES ICI
 builder.Services.AddControllers();
 builder.Services.AddDbContext<AppDbContext>();
-builder.Services.AddScoped<Calculator>(); 
+builder.Services.AddScoped<Calculator>();
+
+// SWAGGER SERVICES 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// CONFIGURATION DU SERVEUR
-app.UseDefaultFiles(); // Pour chercher index.html
-app.UseStaticFiles();  // Pour lire le dossier wwwroot
-
-/*
-// MIGRATION AUTOMATIQUE 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
-}
-*/
+// Enable Swagger for Azure (important!)
+app.UseSwagger();
+app.UseSwaggerUI();
 
 
 
-app.UseCors();
+app.UseCors(policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+
 app.MapControllers();
 app.Run();
