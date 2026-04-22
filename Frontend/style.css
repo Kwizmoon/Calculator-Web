@@ -104,6 +104,13 @@ h1 {
     text-align: right;
 }
 
+#res {
+    text-align: right;
+    width: 100%;
+    align-self: flex-end; /* Pour forcer le bas si nécessaire */
+    font-size: 1.6rem;
+}
+
 #expression {
     font-family: var(--mono);
     font-size: 14px;

@@ -21,6 +21,9 @@ function refresh() {
 }
 
 function append(ch) {
+
+    document.getElementById("res").classList.remove("error-text");
+
     const operators = ["+", "-", "*", "/", "^"];
     const lastChar = expr.slice(-1);
 
@@ -68,7 +71,6 @@ async function faireCalcul() {
     const resEl = document.getElementById("res");
 
     resEl.classList.remove("error-text");
-    statusEl.innerText = "…";
     resEl.innerText = "";
 
     const operators = ["+", "-", "*", "/", "^"];
@@ -88,7 +90,13 @@ async function faireCalcul() {
 
         const text = await response.text();
         const data = JSON.parse(text);
-        resEl.innerText = data.res ?? data.result ?? data;
+        finalResult = data.res ?? data.result ?? data;
+        resEl.innerHTML = finalResult;
+
+        if (typeof finalResult === "string" && (finalResult.includes("Error") || finalResult.includes("Invalid"))) {
+            resEl.classList.add("error-text");
+        }
+        
         statusEl.innerText = "";
         chargerHistorique();
     } catch (err) {
