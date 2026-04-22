@@ -220,7 +220,7 @@ button:active { transform: scale(0.95); }
 .btn-back:hover{ background: var(--backHover); }
 
 .btn-back {
-    font-size: 20px;
+    font-size: 24px;
     color: var(--text);
     background: var(--back);
     border-color: var(--border);
