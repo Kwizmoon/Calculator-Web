@@ -147,10 +147,14 @@ h1 {
 }
 
 .btn-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: grid;    grid-template-columns: repeat(8, 1fr); 
     gap: 7px;
     margin-bottom: 7px;
+}
+
+.btn-row button {
+    grid-column: span 4; 
+    width: 100%;
 }
 
 .btn-grid .btn-par {
@@ -232,6 +236,12 @@ button:active { transform: scale(0.95); }
 .btn-eq:hover { 
     background: var(--accent-dim);
     
+}
+
+.error-text {
+    color: #ff4d4d;    
+    font-size: 0.8rem; 
+    font-weight: bold;
 }
 
 /* Exponent n row */
