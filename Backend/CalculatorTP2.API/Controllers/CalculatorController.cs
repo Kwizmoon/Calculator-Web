@@ -21,16 +21,16 @@ namespace CalculatorTP2.API.Controllers
 
         // Endpoint pour calculer une expression et sauvegarder le résultat en base de données
         [HttpPost("calculer")]
-        public IActionResult Calculer([FromBody] string expression)
+        public IActionResult Calculer([FromBody] CalculatorRequest request)
         {
             try
             {
-                var resultat = _calculator.EvaluerExpression(expression);
+                var resultat = _calculator.EvaluerExpression(request.Expression);
 
                 _db.CalculationLogs.Add(new CalculationLog
                 {
-                    Expression = expression,
-                    Result = resultat,
+                    Expression = request.Expression,
+                    Result = resultat.ToString(),
                     CreatedAt = DateTime.Now
                 });
                 _db.SaveChanges();
@@ -43,7 +43,7 @@ namespace CalculatorTP2.API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { res = "Invalid Expression" });
+                return Ok(new { res = "Invalid Expression" });
             }
         }
 
