@@ -111,6 +111,7 @@ h1 {
     font-size: 1.6rem;
 }
 
+
 #expression {
     font-family: var(--mono);
     font-size: 14px;
@@ -246,7 +247,7 @@ button:active { transform: scale(0.95); }
     
 }
 
-.error-text {
+#res.error-text {
     color: #ff4d4d;    
     font-size: 0.8rem; 
     font-weight: bold;
