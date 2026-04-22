@@ -23,7 +23,7 @@ function refresh() {
 function append(ch) {
 
     document.getElementById("res").classList.remove("error-text");
-    
+
     const operators = ["+", "-", "*", "/", "^"];
     const lastChar = expr.slice(-1);
 
@@ -89,7 +89,7 @@ async function faireCalcul() {
             body: JSON.stringify({ expression: expr })
         });
 
-        const data = await response.json();
+        const data = await response.text();
         const finalResult = data.res ?? data.result ?? data;
 
         // Apply error style if the backend sends an Error string
