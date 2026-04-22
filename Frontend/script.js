@@ -89,7 +89,8 @@ async function faireCalcul() {
             body: JSON.stringify({ expression: expr })
         });
 
-        const data = await response.text();
+        const text = await response.text();
+        const data = JSON.parse(text);
         const finalResult = data.res ?? data.result ?? data;
 
         // Apply error style if the backend sends an Error string
