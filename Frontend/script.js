@@ -17,91 +17,103 @@ toggleBtn.addEventListener("click", () => {
 let expr = "";
 
 function refresh() {
-document.getElementById("expression").innerText = expr || "";
+    document.getElementById("expression").innerText = expr || "";
 }
 
 function append(ch) {
-expr += ch;
-refresh();
+    const operators = ["+", "-", "*", "/", "^"];
+    const lastChar = expr.slice(-1);
+
+    // Prevent double operators 
+    if (operators.includes(ch) && operators.includes(lastChar)) {
+        return; 
+    }
+    expr += ch;
+    refresh();
 }
 
 function clearAll() {
-expr = "";
-document.getElementById("res").innerText = "";
-document.getElementById("status").innerText = "";
-refresh();
+    expr = "";
+    document.getElementById("res").innerText = "";
+    document.getElementById("status").innerText = "";
+    refresh();
 }
 
 function backspace() {
-expr = expr.slice(0, -1);
-refresh();
+    expr = expr.slice(0, -1);
+    refresh();
 }
 
 function applySquare() {
-if (!expr) return;
-expr = `(${expr})^2`;
-refresh();
+    if (!expr) return;
+    expr = `(${expr})^2`;
+    refresh();
 }
 
 function applySqrt() {
-if (!expr) return;
-expr = `sqrt(${expr})`;
-refresh();
+    if (!expr) return;
+    expr = `sqrt(${expr})`;
+    refresh();
 }
 
 function applyExpN() {
-const n = document.getElementById("exp-n-input").value;
-if (!expr || n === "") return;
-expr = `(${expr})^${n}`;
-refresh();
+if (!expr) return;
+    expr += "^"; 
+    refresh();
 }
 
 async function faireCalcul() {
-if (!expr) return;
-const statusEl = document.getElementById("status");
-const resEl = document.getElementById("res");
-statusEl.innerText = "…";
-resEl.innerText = "";
+    if (!expr) return;
+    const statusEl = document.getElementById("status");
+    const resEl = document.getElementById("res");
+    statusEl.innerText = "…";
+    resEl.innerText = "";
 
-try {
-    const response = await fetch(`${API_URL}/calculer`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(expr)
-    });
+    const operators = ["+", "-", "*", "/", "^"];
+    if (operators.includes(expr.slice(-1))) {
+        document.getElementById("res").innerText = "Error: Incomplete expression";
+        return;
+    }
 
-    const text = await response.text();
-    const data = JSON.parse(text);
-    resEl.innerText = data.res ?? data.result ?? data;
-    statusEl.innerText = "";
-    chargerHistorique();
-} catch (err) {
-    statusEl.innerText = "Erreur API";
-}
+    try {
+        const response = await fetch(`${API_URL}/calculer`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ expression: expr })
+        });
+
+        const text = await response.text();
+        const data = JSON.parse(text);
+        resEl.innerText = data.res ?? data.result ?? data;
+        statusEl.innerText = "";
+        chargerHistorique();
+    } catch (err) {
+        statusEl.innerText = "Erreur API";
+    }
 }
 
 async function chargerHistorique() {
-try {
-    const response = await fetch(`${API_URL}/historique`);
-    const logs = await response.json();
-    const liste = document.getElementById("liste-historique");
-    liste.innerHTML = "";
+    try {
+        const response = await fetch(`${API_URL}/historique`);
+        const logs = await response.json();
+        const liste = document.getElementById("liste-historique");
+        liste.innerHTML = "";
 
-    logs.forEach(log => {
-    const li = document.createElement("li");
-    const left = document.createElement("span");
-    left.innerHTML = `${log.expression} <span class="eq">= ${log.result}</span>`;
-    const right = document.createElement("span");
-    right.className = "date";
-    right.innerText = new Date(log.createdAt).toLocaleString();
-    li.appendChild(left);
-    li.appendChild(right);
-    liste.appendChild(li);
-    });
-} catch {
-    const liste = document.getElementById("liste-historique");
-    liste.innerHTML = "<li><span>Historique non disponible</span></li>";
-}
+        logs.forEach(log => {
+        const li = document.createElement("li");
+        const left = document.createElement("span");
+        left.innerHTML = `${log.expression} <span class="eq">= ${log.result}</span>`;
+        const right = document.createElement("span");
+        right.className = "date";
+        right.innerText = new Date(log.createdAt).toLocaleString();
+        li.appendChild(left);
+        li.appendChild(right);
+        liste.appendChild(li);
+        });
+    } catch {
+        const liste = document.getElementById("liste-historique");
+        liste.innerHTML = "<li><span>Historique non disponible</span></li>";
+    }
 }
 
 

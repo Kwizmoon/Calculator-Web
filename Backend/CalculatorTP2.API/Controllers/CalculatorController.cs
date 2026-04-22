@@ -23,13 +23,28 @@ namespace CalculatorTP2.API.Controllers
         [HttpPost("calculer")]
         public IActionResult Calculer([FromBody] string expression)
         {
-            var resultat = _calculator.EvaluerExpression(expression);
+            try
+            {
+                var resultat = _calculator.EvaluerExpression(expression);
 
-            // Sauvegarde simplifiée 
-            _db.CalculationLogs.Add(new CalculationLog { Expression = expression, Result = resultat, CreatedAt = DateTime.Now});
-            _db.SaveChanges();
+                _db.CalculationLogs.Add(new CalculationLog
+                {
+                    Expression = expression,
+                    Result = resultat,
+                    CreatedAt = DateTime.Now
+                });
+                _db.SaveChanges();
 
-            return Ok(new { res = resultat });
+                return Ok(new { res = resultat });
+            }
+            catch (DivideByZeroException)
+            {
+                return Ok(new { res = "Error: Division by zero" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { res = "Invalid Expression" });
+            }
         }
 
 
