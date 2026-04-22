@@ -66,12 +66,16 @@ async function faireCalcul() {
     if (!expr) return;
     const statusEl = document.getElementById("status");
     const resEl = document.getElementById("res");
+
+    resEl.classList.remove("error-text");
     statusEl.innerText = "…";
     resEl.innerText = "";
 
     const operators = ["+", "-", "*", "/", "^"];
     if (operators.includes(expr.slice(-1))) {
         document.getElementById("res").innerText = "Error: Incomplete expression";
+        resEl.classList.add("error-text");
+        statusEl.innerText = "";
         return;
     }
 
@@ -89,6 +93,8 @@ async function faireCalcul() {
         chargerHistorique();
     } catch (err) {
         statusEl.innerText = "Erreur API";
+        resEl.classList.add("error-text");
+        statusEl.innerText = "";
     }
 }
 
