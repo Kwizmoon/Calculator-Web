@@ -11,19 +11,19 @@ namespace CalculatriceLibrary.Data
     {
         public DbSet<CalculationLog> CalculationLogs { get; set; }
 
-        // 1. ADD THIS CONSTRUCTOR: This allows Program.cs to pass in the In-Memory settings
+        //This allows Program.cs to pass in the In-Memory settings
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
 
-        // 2. KEEP THIS for local development if needed, but the constructor above is the priority
+        // for local development if needed, but the constructor above is the priority
         public AppDbContext()
         {
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // 3. ONLY use SQLite if nothing else was configured in Program.cs
+            // ONLY use SQLite if nothing else was configured in Program.cs
             if (!optionsBuilder.IsConfigured)
             {
                 var folder = Environment.SpecialFolder.LocalApplicationData;
