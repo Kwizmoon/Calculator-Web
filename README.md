@@ -1,4 +1,4 @@
-# Calculatrice Avancée — TP1
+# Calculatrice Avancée WEB— TP2
 
 **Cours :** 420-246-AH · Programmation Microsoft  
 **Professeur :** Steve Lévesque  
@@ -8,129 +8,154 @@
 
 ## Membres de l'équipe
 
-| Prénom            | Nom       | Matricule
-|-------------------|-----------|
-| Nanou Ange Robert | Kouassi   |
-| Mohamed Sabry     | Banwan    | 
-| Bao Tran          | Bach      | 
-| Mohammed Amine    | Lemgandez | 
+| Prénom            | Nom       | Matricule |
+|-------------------|-----------|-----------|
+| Nanou Ange Robert | Kouassi   | 2007471   |
+| Mohamed Sabry     | Banwan    | 2252825   |
+| Bao Tran          | Bach      | 1642345   |
+| Mohammed Amine    | Lemgandez | 2257191   |
 
 ---
 
 ## Description
 
-Application console C# qui effectue des calculs mathématiques.  
-Chaque calcul est sauvegardé dans une base de données SQLite (via Entity Framework Core) et dans un fichier JSON.
+Extension du TP1 : l'application console C# est devenue une **API REST ASP.NET Core** connectée à un **frontend web**. L'interface permet de saisir des expressions mathématiques, d'obtenir un résultat en temps réel et de consulter l'historique des calculs. Le tout est déployé dans le cloud.
 
+---
 
-![Menu Principal](images/calculator_1.png)
+## URLs de déploiement
+
+| Service  |                                     URL                                           |
+|----------|-----------------------------------------------------------------------------------|
+| Frontend | https://calculator-web-sage-zeta.vercel.app/                                      |← URL du site web
+| Backend  | https://calculatortp2-eca3egh7gffhdpfy.canadacentral-01.azurewebsites.net         |
+| Swagger  | https://calculatortp2-eca3egh7gffhdpfy.canadacentral-01.azurewebsites.net/swagger |← API avec requêtes HTTP
+
+---
+
+## Architecture
+
+```
+Navigateur (Vercel) |           | API REST (Azure)        |    | Base de données
+index.html          |           | CalculatorController.cs |    | EF Core In-Memory
+style.css           |  →HTTP→   | /calculator/calculer    | →  | CalculationLogs
+script.js           |           | /calculator/historique  |    |
+```
 
 ---
 
 ## Structure du projet
 
 ```
-TP1_Final/
-├── CalculatriceLibrary/
-│   ├── Calculator.cs
-│   ├── Models/
-│   │   └── CalculationLog.cs
-│   ├── Data/
-│   │   ├── AppDbContext.cs
-│   │   └── SeedData.cs
-│   └── Migrations/
-│       ├── InitialCreate.cs
-│       └── AppDbContextModelSnapshot.cs
-├── CalculatriceTP1/
-│   ├── Program.cs
-│   └── UI/
-│       └── ConsoleUI.cs
-└── README.md
+TP2/
+├── Frontend/                        ← Déployé sur Vercel
+│   ├── index.html                   ← Structure de la page
+│   ├── style.css                    ← Thème clair/sombre, mise en page
+│   ├── script.js                    ← Logique, appels API, historique
+│   ├── moon.png                     ← Icône thème
+│   └── sun-icon-30.png              ← Icône thème
+│
+└── Backend/                         ← Déployé sur Azure App Service
+    ├── Program.cs                   ← Config, CORS, injection de dépendances
+    ├── CalculatorController.cs      ← Endpoints REST
+    └── CalculatriceLibrary/         ← Logique métier réutilisée du TP1
+        ├── Calculator.cs            ← Évaluateur d'expressions
+        ├── Models/
+        │   └── CalculationLog.cs
+        └── Data/
+            └── AppDbContext.cs
 ```
 
 ---
 
 ## Fonctionnalités
 
-| Option | Fonctionnalité                                       |
-|--------|------------------------------------------------------|
-| `1`    | Addition                                             |
-| `2`    | Soustraction                                         |
-| `3`    | Multiplication                                       |
-| `4`    | Division                                             |
-| `5`    | Exposant 2 (x²)                                      |
-| `6`    | Exposant N (xⁿ)                                      |
-| `7`    | Racine carrée (√x)                                   |
-| `8`    | Expression longue (précédence + parenthèses)         |
-| `9`    | Historique des calculs depuis la BD                  |
-| `10`   | Supprimer l'historique mais garde les exemples       |
-| `0`    | Quitter                                              |
+| Fonctionnalité          |                            Détail                             |
+|-------------------------|---------------------------------------------------------------|
+| Opérations de base      | Addition, soustraction, multiplication, division              |
+| Exposant 2 (x²)         | Enveloppe l'expression courante : `(expr)^2`                  |
+| Exposant N (xⁿ)         | Ajoute `^` à l'expression pour saisir l'exposant              |
+| Racine carrée (√x)      | Enveloppe l'expression : `sqrt(expr)`                         |
+| Parenthèses             | Boutons `(` et `)` pour grouper les sous-expressions          |
+| Thème clair / sombre    | Bascule via un bouton en haut à droite                        |
+| Validation d'expression | Bloque l'envoi si l'expression se termine par un opérateur    |
+| Historique              | Chargé au démarrage, mis à jour après chaque calcul           |
+| Supprimer log           | Supprimer un log dans l'historique avec son id                |
+| Affichage d'erreurs     | Division par zéro et expressions invalides affichées en rouge |
 
 ---
 
-## Installation et utilisation
+## Endpoints de l'API
 
-### Prérequis
-- Visual Studio 2026
-- .NET 8.0 SDK
+| Méthode | Endpoint                      |                            Description                        |
+|---------|-------------------------------|---------------------------------------------------------------|
+| `POST`  | `/calculator/calculer`        | Évalue une expression mathématique et sauvegarde le résultat  |
+| `GET`   | `/calculator/historique`      | Retourne l'historique des calculs triés par ordre décroissant |
+| `DELETE`| `/calculator/historique/{id}` | Supprime un calcul spécifique de l'historique                 |
 
-### Ouvrir le projet
-1. Extraire le `.zip`
-2. Ouvrir `TP1_Final.sln` dans Visual Studio
-3. Clic droit sur `CalculatriceTP1` → **Set as Startup Project**
-4. Clic droit sur la Solution → **Restore NuGet Packages**
+### Format des requêtes
 
----
+**POST `/calculator/calculer`**
+```json
+// Corps de la requête
+{ "expression": "2+3*4" }
 
-## Migrations EF Core
-
-Ouvrir le **Package Manager Console** : `Tools → NuGet Package Manager → Package Manager Console`
-
-```powershell
-# Créer la migration
-Add-Migration InitialCreate -Project CalculatriceLibrary -StartupProject CalculatriceTP1
-
-# Créer la base de données
-Update-Database -Project CalculatriceLibrary -StartupProject CalculatriceTP1
+// Réponse
+{ "res": 14 }
 ```
 
-> La migration s'applique aussi automatiquement au premier lancement grâce à `dbContext.Database.Migrate()` dans `Program.cs`.
+**GET `/calculator/historique`**
+```json
+[
+  {
+    "id": 1,
+    "expression": "2+3*4",
+    "result": "14",
+    "createdAt": "2025-01-01T12:00:00"
+  }
+]
+```
 
 ---
 
-## Base de données
+## Déploiement
 
-**Fichier :** `C:\Users\<nom>\AppData\Local\calculatrice_tp1.db`
+### Frontend — Vercel
 
-### Table `CalculationLogs`
+1. Créer un compte sur [vercel.com](https://vercel.com) et lier le dépôt GitHub
+2. Importer le projet (les fichiers `index.html`, `style.css`, `script.js` + images)
+3. Vercel détecte automatiquement un projet statique — aucune configuration requise
+4. Cliquer sur **Deploy** — l'URL publique est générée automatiquement
 
-| Colonne      | Type    | Description                                 |
-|--------------|---------|---------------------------------------------|
-| `Id`         | INTEGER | Clé primaire auto-incrémentée               |
-| `Expression` | TEXT    | Expression calculée                         |
-| `Operand1`   | REAL    | Premier opérande (nullable)                 |
-| `Operand2`   | REAL    | Deuxième opérande (nullable)                |
-| `Operator`   | TEXT    | `+` `-` `*` `/` `pow2` `powN` `sqrt` `expr` |
-| `Result`     | REAL    | Résultat                                    |
-| `CreatedAt`  | TEXT    | Date et heure                               |
+### Backend — Azure App Service
 
-### Données initiales (seeding)
+1. Dans Visual Studio : clic droit sur le projet API → **Publish**
+2. Choisir **Azure** → **Azure App Service (Windows)**
+3. Créer une nouvelle App Service (région Canada Central recommandée)
+4. Laisser les paramètres par défaut — EF Core In-Memory ne nécessite pas de base de données externe
+5. Cliquer sur **Publish** — Azure génère l'URL du service
+6. Copier l'URL dans la constante `API_URL` de `script.js` et redéployer sur Vercel
 
-| Expression | Opérateur | Résultat |
-|------------|-----------|----------|
-| 10+5       | +         | 15       |
-| 100-37     | -         | 63       |
-| 7*8        | *         | 56       |
-| 144/12     | /         | 12       |
-| 9^2        | pow2      | 81       |
-| 2^10       | powN      | 1024     |
-| sqrt(256)  | sqrt      | 16       |
+### CORS
+
+Le backend autorise toutes les origines pour permettre les appels depuis Vercel :
+
+```C#
+app.UseCors(policy => policy
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod());
+```
 
 ---
 
-## Fichiers générés
+## Prérequis
 
-| Fichier                      | Emplacement      |
-|------------------------------|------------------|
-| `calculatrice_tp1.db`        | `AppData\Local\` |
-| `calculatrice_tp1_logs.json` | `AppData\Local\` |
+### Développement
+- Visual Studio 2022+
+- .NET 8.0 SDK
+- Compte GitHub (pour Vercel)
+
+### Déploiement
+- Compte Vercel (gratuit)
+- Compte Azure (abonnement étudiant ou gratuit)
