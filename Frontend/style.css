@@ -243,6 +243,26 @@ button:active { transform: scale(0.95); }
     
 }
 
+.btn-delete-log {
+    background: none;
+    border: none;
+    color: var(--danger);
+    font-size: 11px;
+    font-weight: bolder;
+    cursor: pointer;
+    padding: 0 4px;
+    height: auto;
+    line-height: 1;
+    opacity: 0.5;
+    transition: opacity 0.15s, color 0.15s;
+}
+.btn-delete-log:hover {
+    color: var(--danger);
+    opacity: 1;
+    background: none;
+    transform: none;
+}
+
 #res.error-text {
     color: #ff4d4d !important;   
     font-size: 14px !important;  

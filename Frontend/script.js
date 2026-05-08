@@ -106,23 +106,53 @@ async function faireCalcul() {
     }
 }
 
+async function supprimerLog(id) {
+    // Remove from DOM immediately by data-id
+    const li = document.querySelector(`[data-id="${id}"]`);
+    if (li) li.remove();
+ 
+    try {
+        const response = await fetch(`${API_URL}/historique/${id}`, {
+            method: "DELETE"
+        });
+ 
+        if (!response.ok) {
+            console.error("Erreur suppression:", response.status);
+            chargerHistorique();
+        }
+    } catch (error) {
+        console.error("Erreur suppression:", error);
+        chargerHistorique();
+    }
+}
+ 
 async function chargerHistorique() {
     try {
         const response = await fetch(`${API_URL}/historique`);
         const logs = await response.json();
         const liste = document.getElementById("liste-historique");
         liste.innerHTML = "";
-
+ 
         logs.forEach(log => {
-        const li = document.createElement("li");
-        const left = document.createElement("span");
-        left.innerHTML = `${log.expression} <span class="eq">= ${log.result}</span>`;
-        const right = document.createElement("span");
-        right.className = "date";
-        right.innerText = new Date(log.createdAt).toLocaleString();
-        li.appendChild(left);
-        li.appendChild(right);
-        liste.appendChild(li);
+            const li = document.createElement("li");
+            li.setAttribute("data-id", log.id);
+ 
+            const left = document.createElement("span");
+            left.innerHTML = `${log.expression} <span class="eq">= ${log.result}</span>`;
+ 
+            const right = document.createElement("span");
+            right.className = "date";
+            right.innerText = new Date(log.createdAt).toLocaleString();
+ 
+            const deleteBtn = document.createElement("button");
+            deleteBtn.innerText = "✕";
+            deleteBtn.className = "btn-delete-log";
+            deleteBtn.onclick = () => supprimerLog(log.id);
+ 
+            li.appendChild(left);
+            li.appendChild(right);
+            li.appendChild(deleteBtn);
+            liste.appendChild(li);
         });
     } catch {
         const liste = document.getElementById("liste-historique");
