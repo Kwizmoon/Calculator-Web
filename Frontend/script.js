@@ -14,6 +14,7 @@ toggleBtn.addEventListener("click", () => {
         icon.src = "sun-icon-30.png";
     }
 });
+
 let expr = "";
 
 function refresh() {
@@ -21,15 +22,14 @@ function refresh() {
 }
 
 function append(ch) {
-
     document.getElementById("res").classList.remove("error-text");
 
     const operators = ["+", "-", "*", "/", "^"];
     const lastChar = expr.slice(-1);
 
-    // Prevent double operators 
+    // Prevent double operators
     if (operators.includes(ch) && operators.includes(lastChar)) {
-        return; 
+        return;
     }
     expr += ch;
     refresh();
@@ -60,8 +60,8 @@ function applySqrt() {
 }
 
 function applyExpN() {
-if (!expr) return;
-    expr += "^"; 
+    if (!expr) return;
+    expr += "^";
     refresh();
 }
 
@@ -83,9 +83,9 @@ async function faireCalcul() {
 
     try {
         const response = await fetch(`${API_URL}/calculer`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ expression: expr })
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ expression: expr })
         });
 
         const text = await response.text();
@@ -96,11 +96,10 @@ async function faireCalcul() {
         if (typeof finalResult === "string" && (finalResult.includes("Error") || finalResult.includes("Invalid"))) {
             resEl.classList.add("error-text");
         }
-        
+
         statusEl.innerText = "";
         chargerHistorique();
     } catch (err) {
-        statusEl.innerText = "Erreur API";
         resEl.classList.add("error-text");
         statusEl.innerText = "";
     }
@@ -110,12 +109,12 @@ async function supprimerLog(id) {
     // Remove from DOM immediately by data-id
     const li = document.querySelector(`[data-id="${id}"]`);
     if (li) li.remove();
- 
+
     try {
         const response = await fetch(`${API_URL}/historique/${id}`, {
             method: "DELETE"
         });
- 
+
         if (!response.ok) {
             console.error("Erreur suppression:", response.status);
             chargerHistorique();
@@ -125,33 +124,37 @@ async function supprimerLog(id) {
         chargerHistorique();
     }
 }
- 
+
 async function chargerHistorique() {
     try {
         const response = await fetch(`${API_URL}/historique`);
         const logs = await response.json();
         const liste = document.getElementById("liste-historique");
         liste.innerHTML = "";
- 
+
         logs.forEach(log => {
             const li = document.createElement("li");
             li.setAttribute("data-id", log.id);
- 
+
             const left = document.createElement("span");
             left.innerHTML = `${log.expression} <span class="eq">= ${log.result}</span>`;
- 
+
             const right = document.createElement("span");
             right.className = "date";
             right.innerText = new Date(log.createdAt).toLocaleString();
- 
+
             const deleteBtn = document.createElement("button");
             deleteBtn.innerText = "✕";
             deleteBtn.className = "btn-delete-log";
             deleteBtn.onclick = () => supprimerLog(log.id);
- 
+
+            const rightGroup = document.createElement("div");
+            rightGroup.className = "log-right";
+            rightGroup.appendChild(right);
+            rightGroup.appendChild(deleteBtn);
+
             li.appendChild(left);
-            li.appendChild(right);
-            li.appendChild(deleteBtn);
+            li.appendChild(rightGroup);
             liste.appendChild(li);
         });
     } catch {
@@ -160,7 +163,4 @@ async function chargerHistorique() {
     }
 }
 
-
-
 window.onload = chargerHistorique;
-

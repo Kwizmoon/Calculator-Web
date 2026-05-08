@@ -247,7 +247,7 @@ button:active { transform: scale(0.95); }
     background: none;
     border: none;
     color: var(--danger);
-    font-size: 11px;
+    font-size: 16px;
     font-weight: bolder;
     cursor: pointer;
     padding: 0 4px;
@@ -261,6 +261,13 @@ button:active { transform: scale(0.95); }
     opacity: 1;
     background: none;
     transform: none;
+}
+
+.log-right {
+    display: flex;
+    align-items: end;
+    gap: 6px;
+    flex-shrink: 0;
 }
 
 #res.error-text {
